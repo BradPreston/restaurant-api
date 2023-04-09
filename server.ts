@@ -4,11 +4,13 @@ import { postgraphile } from "postgraphile";
 import { router } from './api/stores/index.ts';
 import { createServer } from "http";
 import { database, schemas, options } from './common.ts';
-import dotenv from "dotenv"
+import verifyKey from "./api/middleware/apiAuth.ts";
+import dotenv from "dotenv";
 dotenv.config();
 
-const middleware = postgraphile(database, schemas, options);
+app.use(verifyKey)
 
+const middleware = postgraphile(database, schemas, options);
 app.use(middleware);
 app.use(router.routes())
 app.use(
@@ -18,7 +20,7 @@ app.use(
     {
       watchPg: true,
       graphiql: true,
-      enhanceGraphiql: true
+      enhanceGraphiql: true,
     }
   )
 );

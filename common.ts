@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 dotenv.config();
 
 // Connection string (or pg.Pool) for PostGraphile to use

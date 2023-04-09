@@ -2,7 +2,6 @@ import Router from "@koa/router";
 const router = new Router();
 import { createStore, deleteStore, getAllStores, getOneStore, updateStore } from "./stores.controller.ts";
 import { koaBody } from "koa-body";
-
 router.use(koaBody())
 
 type Store = {
@@ -23,7 +22,7 @@ router
     } catch (err) {
       ctx.status = 400;
       ctx.body = {
-        message: err.message
+        message: err.message  
       }
     }
   })
@@ -88,5 +87,4 @@ router
       }
     }
   })
-
 export default router;
